@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Casa;
+use App\Negocio;
 
-class CasasApiController extends Controller
+class NegociosApiController extends Controller
 {
     public function __construct()
     {
@@ -31,19 +31,20 @@ class CasasApiController extends Controller
      */
     public function store(Request $request)
     {
-        $nuevaCasa = new Casa();
-        $nuevaCasa -> id_user = $request -> user() -> id;
-        $nuevaCasa -> calle = $request -> input('calle');
-        $nuevaCasa -> numero = $request -> input('numero');
-        $nuevaCasa -> numero_interior = $request -> input('numero_interior');
-        $nuevaCasa -> colonia = $request -> input('colonia');
-        $nuevaCasa -> numero_banos = $request -> input('numero_banos');
-        $nuevaCasa -> numero_habitantes = $request->input('numero_habitantes');
+        $nuevoNegocio = new Negocio();
+        $nuevoNegocio -> id_user = $request -> user() -> id;
+        $nuevoNegocio -> calle = $request -> input('calle');
+        $nuevoNegocio -> numero = $request -> input('numero');
+        $nuevoNegocio -> numero_interior = $request -> input('numero_interior');
+        $nuevoNegocio -> colonia = $request -> input('colonia');
+        $nuevoNegocio -> nombre_negocio = $request -> input('nombre_negocio');
+        $nuevoNegocio -> numero_empleados = $request->input('numero_empleados');
+        $nuevoNegocio -> numero_banos = $request -> input('numero_banos');
         
         // Arma una respuesta
         $respuesta = array();
         $respuesta['exito'] = false;
-        if($nuevaCasa -> save()){
+        if($nuevoNegocio -> save()){
             $respuesta['exito'] = true;
         }
 
